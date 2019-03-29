@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Velocity Output</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                #foreach($field in $Model.Entity.Fields)
+                    #if(!$field.System)<th>$field.Label</th> #end
+                #end
+            </tr>
+        </thead>
+        <tbody>
+            #foreach($row in $Model.Rows)
+                <tr>
+                    #foreach($field in $Model.Entity.Fields)
+                        #if(!$field.System)<td>$row.get_Item($field)</td> #end
+                    #end
+                </tr>
+                #set( $Model.Entity.Inserts = $Model.Entity.Inserts + 1 )
+            #end
+        </tbody>
+    </table>
+</body>
+</html>
