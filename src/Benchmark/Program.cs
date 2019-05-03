@@ -20,7 +20,7 @@ namespace Benchmark {
          var logger = new NullLogger();
          using (var outer = new ConfigurationContainer().CreateScope(@"files\bogus.xml?Size=10000", logger)) {
             var process = outer.Resolve<Process>();
-            using (var inner = new TestContainer(new BogusModule()).CreateScope(process, logger)) {
+            using (var inner = new Container(new BogusModule()).CreateScope(process, logger)) {
                var controller = inner.Resolve<IProcessController>();
                controller.Execute();
             }
@@ -32,7 +32,7 @@ namespace Benchmark {
          var logger = new NullLogger();
          using (var outer = new ConfigurationContainer(new VelocityTransformModule()).CreateScope(@"files\bogus-with-transform.xml?Size=10000", logger)) {
             var process = outer.Resolve<Process>();
-            using (var inner = new TestContainer(new VelocityTransformModule(), new BogusModule()).CreateScope(process, logger)) {
+            using (var inner = new Container(new VelocityTransformModule(), new BogusModule()).CreateScope(process, logger)) {
                var controller = inner.Resolve<IProcessController>();
                controller.Execute();
             }

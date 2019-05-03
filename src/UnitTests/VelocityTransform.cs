@@ -56,7 +56,7 @@ namespace UnitTests {
          using (var outer = new ConfigurationContainer(new VelocityTransformModule()).CreateScope(xml, logger)) {
             var process = outer.Resolve<Process>();
             using (var inner =
-               new TestContainer(new VelocityTransformModule()).CreateScope(process, new ConsoleLogger(LogLevel.Debug))) {
+               new Container(new VelocityTransformModule()).CreateScope(process, new ConsoleLogger(LogLevel.Debug))) {
 
                var controller = inner.Resolve<IProcessController>();
                controller.Execute();

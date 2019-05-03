@@ -57,7 +57,7 @@ namespace IntegrationTests {
          var logger = new ConsoleLogger(LogLevel.Debug);
          using (var outer = new ConfigurationContainer().CreateScope(xml, logger)) {
             var process = outer.Resolve<Process>();
-            using (var inner = new TestContainer(new BogusModule(), new VelocityProviderModule()).CreateScope(process, logger)) {
+            using (var inner = new Container(new BogusModule(), new VelocityProviderModule()).CreateScope(process, logger)) {
                var controller = inner.Resolve<IProcessController>();
                controller.Execute();
 
